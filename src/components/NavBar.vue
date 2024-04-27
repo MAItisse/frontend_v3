@@ -2,6 +2,7 @@
     <header>
         <img src="/favicon.png" />
         <h1>JifForgeAi</h1>
+        <mdicon id="theme" size="2.5rem" name="theme-light-dark" @click="toggle_theme" />
     </header>
 </template>
 
@@ -19,6 +20,14 @@ let theme = useStorage("theme", os_theme)
 watch(theme, () => {
     document.documentElement.setAttribute("data-theme", theme.value);
 }, { immediate: true })
+
+function toggle_theme() {
+    if (theme.value == "dark") {
+        theme.value = "light";
+    } else {
+        theme.value = "dark";
+    }
+}
 </script>
 
 <style scoped>
@@ -41,6 +50,34 @@ img {
 
 h1 {
     color: var(--color-heading);
+}
 
+#theme {
+    margin-left: auto;
+    transition: all 0.5s ease-out;
+    color: var(--color-heading)
+}
+
+#theme:hover {
+    scale: 1.5;
+    animation: shake 0.5s infinite linear;
+}
+
+@keyframes shake {
+    0% {
+        rotate: 0deg;
+    }
+
+    25% {
+        rotate: 10deg;
+    }
+
+    75% {
+        rotate: -10deg;
+    }
+
+    100% {
+        rotate: 0deg;
+    }
 }
 </style>
