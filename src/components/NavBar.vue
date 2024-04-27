@@ -5,6 +5,22 @@
     </header>
 </template>
 
+<script setup lang="ts">
+import { useStorage } from "@vueuse/core";
+import { watch } from "vue";
+
+let os_theme = "light";
+if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    os_theme = "dark";
+}
+
+let theme = useStorage("theme", os_theme)
+
+watch(theme, () => {
+    document.documentElement.setAttribute("data-theme", theme.value);
+}, { immediate: true })
+</script>
+
 <style scoped>
 header {
     width: 100%;
