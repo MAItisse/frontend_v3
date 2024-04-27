@@ -8,7 +8,7 @@
 <style scoped>
 header {
     width: 100%;
-    background-color: var(--color-background-soft);
+    background-color: var(--c-primary);
 
     padding: 10px;
     box-shadow: 10px 0px 20px black;
