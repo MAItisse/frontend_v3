@@ -21,8 +21,16 @@
     --vt-c-text-dark-2: rgba(235, 235, 235, 0.64);
 }
 
-/* semantic color variables for this project */
 :root {
+    --c-primary-black: #1b6611;
+    --c-primary-light: #a2d27a;
+}
+
+/* semantic color variables for this project */
+
+:root {
+    --c-primary: var(--c-primary-light);
+
     --color-background: var(--vt-c-white);
     --color-background-soft: var(--vt-c-white-soft);
     --color-background-mute: var(--vt-c-white-mute);
@@ -38,6 +46,7 @@
 
 @media (prefers-color-scheme: dark) {
     :root {
+        --c-primary: var(--c-primary-black);
         --color-background: var(--vt-c-black);
         --color-background-soft: var(--vt-c-black-soft);
         --color-background-mute: var(--vt-c-black-mute);
