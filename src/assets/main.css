@@ -7,3 +7,7 @@ h4,
 h5 {
     color: var(--color-heading)
 }
+
+a {
+    text-decoration: none;
+}
