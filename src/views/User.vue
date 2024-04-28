@@ -1,5 +1,5 @@
 <template>
-    <img v-for="image in images" v-lazy="image" />
+    <img v-for="image in results" :key="image" v-lazy="image" />
 </template>
 
 <script setup lang="ts">
