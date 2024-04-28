@@ -2,6 +2,7 @@
     <header>
         <img src="/favicon.png" />
         <h1>JifForgeAi</h1>
+        <img id="avatar" :src="discord.avatarUrl" />
         <mdicon id="theme" size="2.5rem" name="theme-light-dark" @click="toggle_theme" />
     </header>
 </template>
@@ -9,6 +10,9 @@
 <script setup lang="ts">
 import { useStorage } from "@vueuse/core";
 import { watch } from "vue";
+import { useDiscord } from "@/stores/discord"
+
+let discord = useDiscord();
 
 let os_theme = "light";
 if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
@@ -52,8 +56,12 @@ h1 {
     color: var(--color-heading);
 }
 
-#theme {
+#avatar {
     margin-left: auto;
+    height: 3rem;
+}
+
+#theme {
     transition: all 0.5s ease-out;
     color: var(--color-heading)
 }
