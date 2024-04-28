@@ -1,8 +1,11 @@
 <template>
     <header>
-        <img src="/favicon.png" />
-        <h1>MAItisse</h1>
-        <img id="avatar" :src="discord.avatarUrl" />
+        <RouterLink to="/">
+            <img src="/favicon.png" />
+        </RouterLink>
+        <RouterLink to="/">
+            <h1>MAItisse</h1>
+        </RouterLink>
         <mdicon id="theme" size="2.5rem" name="theme-light-dark" @click="toggle_theme" />
     </header>
 </template>
