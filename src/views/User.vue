@@ -8,9 +8,9 @@ import { ref, watch, type Ref } from 'vue';
 
 let discord = useDiscord();
 
-const imagesDataUrl = "https://deepnarrationapi.matissetec.dev/getUserImages"
+const resultDataUrl = "https://deepnarrationapi.matissetec.dev/getUserResults"
 
-const imageFilter = ref({
+const filters = ref({
     createImage: true,
     similarImages: true,
     combineImage: true,
@@ -26,14 +26,14 @@ function filter_to_comma(filter: { [key: string]: boolean }): string {
     return Object.entries(filter).filter(([_, val]) => val).map(([key, _]) => key).join(",");
 }
 
-const images: Ref<string[]> = ref([]);
+const results: Ref<string[]> = ref([]);
 
 async function load_images() {
-    let url = `${imagesDataUrl}/${discord.info.user_id}?filter=${filter_to_comma(imageFilter.value)}`;
+    let url = `${resultDataUrl}/${discord.info.user_id}?filter=${filter_to_comma(filters.value)}`;
     let result = await fetch(url);
     let data = await result.json();
 
-    images.value = data;
+    results.value = data;
 }
 
 watch(() => discord.dataLoaded, () => {
