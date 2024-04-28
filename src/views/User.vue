@@ -20,6 +20,11 @@ const filters = ref({
     cannyFaceswap: true,
     qrCode: true,
     imageBackgroundRemoval: true,
+    spinMe: true,
+    dancer: true,
+    Faceswap: true,
+    BgExtender: true,
+    BgRemoval: true,
 });
 
 function filter_to_comma(filter: { [key: string]: boolean }): string {
