@@ -38,6 +38,7 @@ export const useDiscord = defineStore("discord", () => {
         username: "MISSING",
         avatar: "MISSING"
     });
+    let dataLoaded = ref(false);
 
     async function loadUserData() {
         if (token.value === null) {
@@ -60,10 +61,11 @@ export const useDiscord = defineStore("discord", () => {
             username: data.username,
             avatar: data.avatar,
         };
+        dataLoaded.value = true;
     }
     loadUserData();
 
     let avatarUrl = computed(() => `https://cdn.discordapp.com/avatars/${info.value.user_id}/${info.value.avatar}.png`)
 
-    return { token, info, avatarUrl, loggedIn, logout }
+    return { token, info, avatarUrl, dataLoaded, loggedIn, logout }
 })
