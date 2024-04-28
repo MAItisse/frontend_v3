@@ -2,25 +2,29 @@
     <div id="logo">
         M<span id="ai">AI</span>tisse
     </div>
-    <div id="product_list">
-        We have <div id="typing"></div>
-        <span style="color: gray">Create Image</span>
-        <br />
-        <div id="list" data-theme="reverse">
-            <div v-for="product in PRODUCTS" :key="product.link" class="item">
-                <RouterLink :to="product.link">
-                    <mdicon :name="product.icon" size="2.5rem" />
-                    {{ product.name }}
-                </RouterLink>
-            </div>
-            <div class="item">
-                ...
+    <MqResponsive target="lg+">
+        <div id="product_list">
+            We have <div id="typing"></div>
+            <span style="color: gray">Create Image</span>
+            <br />
+            <div id="list" data-theme="reverse">
+                <div v-for="product in PRODUCTS" :key="product.link" class="item">
+                    <RouterLink :to="product.link">
+                        <mdicon :name="product.icon" size="2.5rem" />
+                        {{ product.name }}
+                    </RouterLink>
+                </div>
+                <div class="item">
+                    ...
+                </div>
             </div>
         </div>
-    </div>
+    </MqResponsive>
 </template>
 
 <script setup lang="ts">
+import { MqResponsive } from "vue3-mq";
+
 interface Product {
     icon: string,
     name: string, link: string,
@@ -55,11 +59,23 @@ interface Product {
     transition: all 0.5s;
 }
 
+@media(max-width: 600px) {
+    #logo {
+        font-size: 4rem;
+    }
+}
+
+@media(orientation: landscape) {
+    #logo {
+        margin-top: 0px;
+    }
+}
+
 #ai {
     display: inline-block;
     color: var(--c-primary);
     rotate: 0deg;
-    font-size: 9rem;
+    font-size: 1.2em;
 
     transition: all 0.8s;
 }
@@ -73,7 +89,7 @@ interface Product {
     color: transparent;
     text-shadow: none;
 
-    font-size: 12rem;
+    font-size: 1.5em;
     rotate: 370deg;
 
     animation: hue_shift 2s infinite linear;

@@ -5,6 +5,4 @@ This is a rewrite for <https://deepnarration.matissetec.dev/>, mainly done by Vi
 
 # TODO
 
-- Make title responsive to mobile
-- Hide completion thing on home page on mobile
 - Deal with long images on user page
