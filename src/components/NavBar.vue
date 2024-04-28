@@ -1,7 +1,7 @@
 <template>
     <header>
         <img src="/favicon.png" />
-        <h1>JifForgeAi</h1>
+        <h1>MAItisse</h1>
         <img id="avatar" :src="discord.avatarUrl" />
         <mdicon id="theme" size="2.5rem" name="theme-light-dark" @click="toggle_theme" />
     </header>
