@@ -2,7 +2,46 @@
     <div id="logo">
         M<span id="ai">AI</span>tisse
     </div>
+    <div id="product_list">
+        We have <div id="typing"></div>
+        <span style="color: gray">Create Image</span>
+        <br />
+        <div id="list" data-theme="reverse">
+            <div v-for="product in PRODUCTS" :key="product.link" class="item">
+                <RouterLink :to="product.link">
+                    <mdicon :name="product.icon" size="2.5rem" />
+                    {{ product.name }}
+                </RouterLink>
+            </div>
+            <div class="item">
+                ...
+            </div>
+        </div>
+    </div>
 </template>
+
+<script setup lang="ts">
+interface Product {
+    icon: string,
+    name: string, link: string,
+} const PRODUCTS: Product[] = [
+    {
+        icon: "camera-plus",
+        name: "Create Image",
+        link: "/create",
+    },
+    {
+        icon: "theme-light-dark",
+        name: "Retheme Image",
+        link: "/retheme"
+    },
+    {
+        icon: "qrcode",
+        name: "QrCode",
+        link: "/qrcode",
+    }
+]
+</script>
 
 <style scoped>
 #logo {
@@ -48,5 +87,59 @@
     100% {
         filter: hue-rotate(360deg);
     }
+}
+
+#product_list {
+    font-size: 4rem;
+    text-align: center;
+
+    transform: translateX(50px);
+}
+
+#typing {
+    display: inline-block;
+    height: 1em;
+    width: 5px;
+    background: var(--c-primary);
+
+    animation: blink 1s step-start infinite;
+    transform: translateX(-0.3em);
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+#list {
+    background-color: var(--color-background);
+    text-align: left;
+    display: inline-block;
+
+    border-radius: 20px;
+    border: solid 5px rgb(130, 130, 200);
+    box-shadow: 15px 10px 30px black;
+
+    overflow: hidden;
+    transform: translateX(150px);
+}
+
+.item {
+    font-size: 3rem;
+    border-bottom: solid gray;
+
+    color: var(--c-primary);
+    padding: 10px;
+
+    transition: all 1s;
+}
+
+.item:last-child {
+    border-bottom: none;
+}
+
+.item:hover:not(:last-child) {
+    text-decoration: underline;
 }
 </style>
