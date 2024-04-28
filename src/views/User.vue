@@ -51,6 +51,7 @@ watch(() => discord.dataLoaded, () => {
 <style scoped>
 img {
     height: 300px;
-    display: block;
+    display: inline-block;
+    margin: 4px;
 }
 </style>
