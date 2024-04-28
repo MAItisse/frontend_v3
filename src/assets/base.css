@@ -28,7 +28,8 @@
 
 /* semantic color variables for this project */
 
-[data-theme="light"] {
+[data-theme="light"],
+[data-theme="dark"] [data-theme="reverse"] {
     --c-primary: var(--c-primary-light);
 
     --color-background: var(--vt-c-white);
@@ -44,7 +45,8 @@
     --section-gap: 160px;
 }
 
-[data-theme="dark"] {
+[data-theme="dark"],
+[data-theme="light"] [data-theme="reverse"] {
     --c-primary: var(--c-primary-black);
     --color-background: var(--vt-c-black);
     --color-background-soft: var(--vt-c-black-soft);
