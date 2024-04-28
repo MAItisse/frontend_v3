@@ -52,10 +52,6 @@ img {
     height: 4.5rem;
 }
 
-h1 {
-    color: var(--color-heading);
-}
-
 #avatar {
     margin-left: auto;
     height: 3rem;
