@@ -6,6 +6,9 @@
         <RouterLink to="/">
             <h1>MAItisse</h1>
         </RouterLink>
+        <RouterLink id="left" to="/user">
+            <img id="avatar" :src="discord.avatarUrl" />
+        </RouterLink>
         <mdicon id="theme" size="2.5rem" name="theme-light-dark" @click="toggle_theme" />
     </header>
 </template>
@@ -55,9 +58,30 @@ img {
     height: 4.5rem;
 }
 
-#avatar {
+#left {
     margin-left: auto;
+}
+
+#avatar {
     height: 3rem;
+}
+
+#avatar:hover {
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0% {
+        scale: 1;
+    }
+
+    50% {
+        scale: 1.2;
+    }
+
+    100% {
+        scale: 1;
+    }
 }
 
 #theme {
