@@ -1,4 +1,5 @@
 <template>
+    <div></div>
     <header>
         <RouterLink to="/">
             <img src="/favicon.png" />
@@ -51,6 +52,9 @@ header {
     height: 5rem;
 
     align-items: center;
+
+    position: sticky;
+    top: 0px;
 }
 
 img {
