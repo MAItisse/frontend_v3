@@ -28,7 +28,7 @@
 
 /* semantic color variables for this project */
 
-:root {
+[data-theme="light"] {
     --c-primary: var(--c-primary-light);
 
     --color-background: var(--vt-c-white);
