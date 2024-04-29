@@ -1,4 +1,5 @@
 <template>
+    <div v-for="(_, key) in filters">{{ key }} <input type="checkbox" v-model="filters[key]"></div>
     <img v-for="image in results" :key="image" v-lazy="image" />
 </template>
 
@@ -41,11 +42,24 @@ async function load_images() {
     results.value = data;
 }
 
+
 watch(() => discord.dataLoaded, () => {
     if (discord.dataLoaded) {
         load_images();
     }
 }, { immediate: true })
+
+let ongoing_fetch: undefined | number = undefined;
+watch(filters.value, () => {
+    if (ongoing_fetch !== undefined) {
+        clearTimeout(ongoing_fetch);
+    }
+
+    ongoing_fetch = setTimeout(() => {
+        ongoing_fetch = undefined;
+        load_images()
+    }, 1000)
+})
 </script>
 
 <style scoped>
@@ -60,4 +74,4 @@ img {
     margin: 0px;
     margin-right: 10px;
 }
-</style>
+</style> 
