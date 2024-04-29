@@ -10,7 +10,11 @@ const router = createRouter({
         {
             path: "/user",
             component: () => import("@/views/User.vue"),
-        }
+        },
+        {
+            path: "/:workflow",
+            component: () => import("@/views/Workflow.vue"),
+        },
     ]
 })
 
