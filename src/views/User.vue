@@ -1,5 +1,10 @@
 <template>
-    <div v-for="(_, key) in filters">{{ key }} <input type="checkbox" v-model="filters[key]"></div>
+    <div id="filters">
+        <div v-for="(_, key) in filters">
+            <input type="checkbox" v-model="filters[key]" :id="key">
+            <label :for="key">{{ key }}</label>
+        </div>
+    </div>
     <img v-for="image in results" :key="image" v-lazy="image" />
 </template>
 
@@ -73,5 +78,19 @@ img {
 
     margin: 0px;
     margin-right: 10px;
+}
+
+label {
+    font-size: 2rem;
+}
+
+input {
+    width: 30px;
+    height: 30px;
+}
+
+#filters {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 500px);
 }
 </style> 
