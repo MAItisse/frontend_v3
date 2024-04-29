@@ -5,4 +5,3 @@ This is a rewrite for <https://deepnarration.matissetec.dev/>, mainly done by Vi
 
 # TODO
 
-- Deal with long images on user page
