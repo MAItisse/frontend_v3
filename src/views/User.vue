@@ -5,6 +5,7 @@
             <label :for="key">{{ key }}</label>
         </div>
     </div>
+    <img src="/loading.gif" v-if="ongoing_fetch !== undefined" />
     <img v-for="image in results" :key="image" v-lazy="image" />
 </template>
 
@@ -54,14 +55,14 @@ watch(() => discord.dataLoaded, () => {
     }
 }, { immediate: true })
 
-let ongoing_fetch: undefined | number = undefined;
+let ongoing_fetch: Ref<undefined | number> = ref(undefined);
 watch(filters.value, () => {
     if (ongoing_fetch !== undefined) {
-        clearTimeout(ongoing_fetch);
+        clearTimeout(ongoing_fetch.value);
     }
 
-    ongoing_fetch = setTimeout(() => {
-        ongoing_fetch = undefined;
+    ongoing_fetch.value = setTimeout(() => {
+        ongoing_fetch.value = undefined;
         load_images()
     }, 1000)
 })
