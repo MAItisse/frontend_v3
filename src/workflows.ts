@@ -3,7 +3,11 @@ export interface TextInput {
     placeholder: string,
 }
 
-export type InputType = TextInput;
+export interface ImageInput {
+    type: "image"
+}
+
+export type InputType = TextInput | ImageInput;
 
 export interface InputData {
     key: string,
@@ -30,6 +34,24 @@ export const WORKFLOWS: { [name: string]: Workflow } = {
                 key: "prompt",
                 type: "text",
                 placeholder: "forest landscape with birds"
+            }
+        ]
+    },
+    "similar": {
+        name: "Similar Image",
+        icon: "image-edit",
+        endpoint: "startSimilarImages",
+        inputs: [
+            {
+                name: "Base Image",
+                key: "targetPicture",
+                type: "image",
+            },
+            {
+                name: "Prompt",
+                key: "prompt",
+                type: "text",
+                placeholder: "Cute girl"
             }
         ]
     }
