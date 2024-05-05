@@ -67,6 +67,7 @@ header {
 
     position: sticky;
     top: 0px;
+    z-index: 1000;
 }
 
 img {
