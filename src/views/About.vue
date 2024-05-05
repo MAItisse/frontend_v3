@@ -157,7 +157,7 @@ interface Product {
     border-bottom: none;
 }
 
-.item:hover:not(:last-child) {
+.item:hover {
     text-decoration: underline;
 }
 </style>
