@@ -17,17 +17,18 @@
         </div>
 
         <div id="right">
+            <mdicon id="theme" size="2.5rem" name="theme-light-dark" @click="toggle_theme" />
             <RouterLink to="/user">
                 <img id="avatar" :src="discord.avatarUrl" />
             </RouterLink>
-            <mdicon id="theme" size="2.5rem" name="theme-light-dark" @click="toggle_theme" />
+            <span id="tokens">tokens: {{ tokens }}</span>
         </div>
     </header>
 </template>
 
 <script setup lang="ts">
 import { useStorage } from "@vueuse/core";
-import { watch } from "vue";
+import { ref, watch } from "vue";
 import { useDiscord } from "@/stores/discord"
 import { MqResponsive } from "vue3-mq";
 
@@ -51,6 +52,23 @@ function toggle_theme() {
         theme.value = "dark";
     }
 }
+
+let tokens = ref(0);
+async function update_tokens() {
+    let resp = await fetch("https://deepnarrationapi.matissetec.dev/tokens", {
+        method: "POST",
+        body: JSON.stringify({
+            discordId: discord.info.user_id
+        })
+    });
+    tokens.value = Number.parseInt(await resp.text());
+}
+
+watch(() => discord.dataLoaded, () => {
+    if (discord.dataLoaded) {
+        update_tokens()
+    }
+}, { immediate: true })
 </script>
 
 <style scoped>
@@ -140,5 +158,9 @@ img {
     100% {
         rotate: 0deg;
     }
+}
+
+#tokens {
+    margin-right: 20px;
 }
 </style>
