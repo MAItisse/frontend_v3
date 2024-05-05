@@ -1,7 +1,7 @@
 <template>
     <div></div>
     <header>
-        <MqResponsive target="lg+" id="left">
+        <MqResponsive target="md+" id="left">
             <RouterLink to="/">
                 <img src="/favicon.png" />
             </RouterLink>
