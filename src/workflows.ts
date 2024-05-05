@@ -54,5 +54,46 @@ export const WORKFLOWS: { [name: string]: Workflow } = {
                 placeholder: "Cute girl"
             }
         ]
-    }
+    },
+    "combine": {
+        name: "Combine Images",
+        icon: "folder-multiple-image",
+        endpoint: "startCombineImages",
+        inputs: [
+            {
+                name: "Image 1",
+                key: "image1Url",
+                type: "image",
+            },
+            {
+                name: "Image 2",
+                key: "image2Url",
+                type: "image",
+            },
+            {
+                name: "Prompt",
+                key: "prompt",
+                type: "text",
+                placeholder: "Cute girl"
+            }
+        ]
+    },
+    "retheme": {
+        name: "Retheme Image",
+        icon: "image-edit",
+        endpoint: "startRethemeImage",
+        inputs: [
+            {
+                name: "Base Image",
+                key: "targetPicture",
+                type: "image",
+            },
+            {
+                name: "Prompt",
+                key: "prompt",
+                type: "text",
+                placeholder: "Painting"
+            }
+        ]
+    },
 }
