@@ -42,6 +42,12 @@ let filterd = computed(() => {
     font-size: 3rem;
 }
 
+@media (max-width: 500px) {
+    .item>h1 {
+        font-size: 2rem;
+    }
+}
+
 .icon {
     align-self: center;
 }
