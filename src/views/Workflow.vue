@@ -21,6 +21,7 @@ import { useRoute, useRouter } from 'vue-router'
 
 import { WORKFLOWS } from '../workflows';
 import { useDiscord } from '@/stores/discord';
+import { useStorage } from '@vueuse/core';
 
 let route = useRoute()
 let router = useRouter()
@@ -42,7 +43,7 @@ let workflow = computed(() => {
 
 let inputs: Ref<{
     [key: string]: string,
-}> = ref({});
+}> = useStorage("inputs", {});
 
 let button_active = ref(true);
 
