@@ -91,6 +91,7 @@ async function generate() {
 
 .input {
     display: flex;
+    margin-bottom: 20px;
 }
 
 .input>h1 {
