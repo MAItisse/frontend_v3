@@ -8,7 +8,9 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     NavBar: typeof import('./src/components/NavBar.vue')['default']
+    PromptInput: typeof import('./src/components/PromptInput.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    WorkflowList: typeof import('./src/components/WorkflowList.vue')['default']
   }
 }
