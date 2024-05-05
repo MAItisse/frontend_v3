@@ -1,15 +1,13 @@
 <template>
     <div></div>
     <header>
-        <MqResponsive target="lg+">
-            <div id="left">
-                <RouterLink to="/">
-                    <img src="/favicon.png" />
-                </RouterLink>
-                <RouterLink to="/">
-                    <h1>MAItisse</h1>
-                </RouterLink>
-            </div>
+        <MqResponsive target="lg+" id="left">
+            <RouterLink to="/">
+                <img src="/favicon.png" />
+            </RouterLink>
+            <RouterLink to="/">
+                <h1>MAItisse</h1>
+            </RouterLink>
         </MqResponsive>
 
         <div id="center">
