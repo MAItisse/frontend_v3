@@ -1,16 +1,27 @@
 <template>
     <div></div>
     <header>
-        <RouterLink to="/">
-            <img src="/favicon.png" />
-        </RouterLink>
-        <RouterLink to="/">
-            <h1>MAItisse</h1>
-        </RouterLink>
-        <RouterLink id="left" to="/user">
-            <img id="avatar" :src="discord.avatarUrl" />
-        </RouterLink>
-        <mdicon id="theme" size="2.5rem" name="theme-light-dark" @click="toggle_theme" />
+        <div id="left">
+            <RouterLink to="/">
+                <img src="/favicon.png" />
+            </RouterLink>
+            <RouterLink to="/">
+                <h1>MAItisse</h1>
+            </RouterLink>
+        </div>
+
+        <div id="center">
+            <RouterLink to="workflows">
+                <h1>Workflows</h1>
+            </RouterLink>
+        </div>
+
+        <div id="right">
+            <RouterLink to="/user">
+                <img id="avatar" :src="discord.avatarUrl" />
+            </RouterLink>
+            <mdicon id="theme" size="2.5rem" name="theme-light-dark" @click="toggle_theme" />
+        </div>
     </header>
 </template>
 
@@ -48,10 +59,10 @@ header {
 
     padding: 10px;
     box-shadow: 10px 0px 20px black;
-    display: inline-flex;
+    display: flex;
     height: 5rem;
 
-    align-items: center;
+    justify-content: center;
 
     position: sticky;
     top: 0px;
@@ -62,8 +73,20 @@ img {
     height: 4.5rem;
 }
 
-#left {
-    margin-left: auto;
+#center,
+#left,
+#right {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+}
+
+#center {
+    justify-content: center;
+}
+
+#right {
+    flex-direction: row-reverse;
 }
 
 #avatar {
@@ -90,7 +113,8 @@ img {
 
 #theme {
     transition: all 0.5s ease-out;
-    color: var(--color-heading)
+    color: var(--color-heading);
+    margin-right: 10px;
 }
 
 #theme:hover {
