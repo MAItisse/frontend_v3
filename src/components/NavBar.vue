@@ -62,6 +62,8 @@ async function update_tokens() {
         })
     });
     tokens.value = Number.parseInt(await resp.text());
+
+    setTimeout(update_tokens, 30_000)
 }
 
 watch(() => discord.dataLoaded, () => {
