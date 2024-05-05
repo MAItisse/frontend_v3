@@ -10,6 +10,8 @@
     <button id="button" @click="generate" :disabled="!button_active">
         {{ button_active ? "Generate" : "Generating..." }}
     </button>
+
+    <img :src="result" v-if="result !== undefined" />
 </template>
 
 <script setup lang="ts">
@@ -17,9 +19,11 @@ import { type ComputedRef, computed, ref, type Ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router'
 
 import { WORKFLOWS } from '../workflows';
+import { useDiscord } from '@/stores/discord';
 
 let route = useRoute()
 let router = useRouter()
+let discord = useDiscord()
 
 // @ts-ignore params might also be a array
 let workflow_key: ComputedRef<string> = computed(() => route.params.workflow)
@@ -41,9 +45,39 @@ let inputs: Ref<{
 
 let button_active = ref(true);
 
+let result: Ref<undefined | string> = ref(undefined);
+
 async function generate() {
     button_active.value = false;
-    setTimeout(() => button_active.value = true, 3000);
+
+    let data = {
+        discordId: discord.info.user_id,
+        discordUsername: discord.info.username,
+        accessToken: discord.token,
+        ...inputs.value
+    };
+    let response = await fetch(`https://deepnarrationapi.matissetec.dev/${workflow.value.endpoint}`, {
+        method: "POST",
+        body: JSON.stringify(data)
+    });
+
+    let result_url = await response.text();
+
+    while (true) {
+        try {
+            let resp = await fetch(result_url);
+
+            if (resp.status === 200) {
+                break;
+            }
+        } catch { }
+
+        await new Promise((resolve) => setTimeout(resolve, 5000));
+    }
+
+    result.value = result_url;
+    button_active.value = true;
+    console.log("DONE")
 }
 </script>
 
@@ -99,5 +133,11 @@ async function generate() {
     width: 240px;
     background-color: rgb(140, 150, 250);
     color: white;
+}
+
+img {
+    margin-left: 50%;
+    transform: translateX(-50%);
+    margin-top: 40px;
 }
 </style>
