@@ -45,7 +45,6 @@ export const useDiscord = defineStore("discord", () => {
             login();
         }
 
-
         let response = await fetch("https://discord.com/api/users/@me", {
             headers: {
                 authorization: token.value,
@@ -62,6 +61,14 @@ export const useDiscord = defineStore("discord", () => {
             avatar: data.avatar,
         };
         dataLoaded.value = true;
+
+        await fetch("https://deepnarrationapi.matissetec.dev/userLoggedIn", {
+            method: "POST",
+            body: JSON.stringify({
+                accessToken: token.value,
+                ttl: new Date().getTime() + 10000 * 1,
+            })
+        })
     }
     loadUserData();
 
