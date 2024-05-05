@@ -12,6 +12,7 @@
     </button>
 
     <img :src="result" v-if="result !== undefined" />
+    <div id="spacer" />
 </template>
 
 <script setup lang="ts">
@@ -141,4 +142,9 @@ img {
     transform: translateX(-50%);
     margin-top: 40px;
 }
+
+#spacer {
+    margin-bottom: 300px;
+}
 </style>
+
