@@ -4,11 +4,11 @@ export interface TextInput {
 }
 
 export interface ImageInput {
-    type: "image"
+    type: "image",
 }
 
 export interface NumberInput {
-    type: "number"
+    type: "number",
 }
 
 export type InputType = TextInput | ImageInput | NumberInput;
@@ -138,26 +138,22 @@ export const WORKFLOWS: { [name: string]: Workflow } = {
             {
                 name: "left",
                 key: "left",
-                type: "text",
-                placeholder: "64"
+                type: "number",
             },
             {
                 name: "right",
                 key: "right",
-                type: "text",
-                placeholder: "64"
+                type: "number",
             },
             {
                 name: "up",
                 key: "up",
-                type: "text",
-                placeholder: "64"
+                type: "number",
             },
             {
                 name: "down",
                 key: "down",
-                type: "text",
-                placeholder: "64"
+                type: "number",
             },
         ]
     },
@@ -221,14 +217,12 @@ export const WORKFLOWS: { [name: string]: Workflow } = {
             {
                 name: "width",
                 key: "width",
-                type: "text",
-                placeholder: "64"
+                type: "number",
             },
             {
                 name: "down",
                 key: "down",
-                type: "text",
-                placeholder: "64"
+                type: "number",
             },
         ]
     },

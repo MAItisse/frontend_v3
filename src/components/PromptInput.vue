@@ -4,16 +4,24 @@
         <input type="text" placeholder="Url" v-model="value" />
         <img v-lazy="value" />
     </div>
+    <input v-else-if="props.data.type === 'number'" type="number" v-model="value" min="0" />
 </template>
 
 <script setup lang="ts">
+import { watch, type ModelRef } from "vue";
 import { type InputType } from "../workflows";
 
 let props = defineProps<{
     data: InputType
 }>();
 
-let value = defineModel();
+let value: ModelRef<number | undefined> = defineModel();
+
+watch(value, () => {
+    if (value.value !== undefined && value.value < 0) {
+        value.value = 0;
+    }
+})
 </script>
 
 <style scoped>
