@@ -1,10 +1,10 @@
 <template>
     <h1 id="name">{{ workflow.name }}</h1>
     <div id="inputs">
-        <div v-for="input in workflow.inputs" :key="input.key" class="input">
-            <h1>{{ input.name }}</h1>
+        <template v-for="input in workflow.inputs" :key="input.key">
+            <h1 class="name">{{ input.name }}</h1>
             <PromptInput :data="input" class="elem" v-model="inputs[input.key]" />
-        </div>
+        </template>
     </div>
 
     <button id="button" @click="generate" :disabled="!button_active">
@@ -91,19 +91,24 @@ async function generate() {
     margin-top: 40px;
 }
 
-.input {
-    display: flex;
-    margin-bottom: 20px;
+#inputs {
+    display: grid;
+    row-gap: 20px;
+    column-gap: 20px;
+    grid-template-columns: max-content auto;
+
+    margin-left: 40px;
+    margin-right: 40px;
+
 }
 
-.input>h1 {
-    margin-left: 40px;
+.name {
+    grid-column: 1;
     font-size: 2.5rem;
 }
 
-.input>.elem {
-    flex: 1;
-    margin: 0px 40px;
+.elem {
+    grid-column: 2;
 }
 
 #button {
