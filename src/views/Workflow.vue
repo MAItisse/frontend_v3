@@ -7,8 +7,8 @@
         </template>
     </div>
 
-    <button id="button" @click="generate" :disabled="!button_active">
-        {{ button_active ? "Generate" : "Generating..." }}
+    <button id="button" @click="generate" :disabled="!button_active || !all_inputs_entered">
+        {{ button_active ? (all_inputs_entered ? "Generate" : "Empty inputs") : "Generating..." }}
     </button>
 
     <img :src="result" v-if="result !== undefined" />
@@ -48,6 +48,10 @@ let inputs: Ref<{
 let button_active = ref(true);
 
 let result: Ref<undefined | string> = ref(undefined);
+
+let all_inputs_entered = computed(() => {
+    return workflow.value.inputs.map((inp) => inputs.value[inp.key] !== "" && inputs.value[inp.key] !== undefined).reduce((a, b) => a && b);
+})
 
 async function generate() {
     button_active.value = false;
