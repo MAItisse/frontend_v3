@@ -98,6 +98,8 @@ async function generate() {
     grid-template-columns: max-content auto;
 
     margin-left: 40px;
+    /* If you change this you need to change the px value in the css for the 
+        img tag in PromptInput.vue */
     margin-right: 40px;
 
 }

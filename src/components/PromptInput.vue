@@ -23,7 +23,8 @@ input {
 
 img {
     max-height: 300px;
-    margin-left: 50%;
-    transform: translate(-50%);
+    position: relative;
+    left: calc(-50vw + 100% + 40px);
+    transform: translateX(-50%);
 }
 </style>
