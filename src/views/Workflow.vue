@@ -11,7 +11,7 @@
         {{ button_active ? (all_inputs_entered ? "Generate" : "Empty inputs") : "Generating..." }}
     </button>
 
-    <img :src="result" v-if="result !== undefined" />
+    <img :src="result" v-if="result !== undefined" id="result" />
     <div id="spacer" />
 </template>
 
@@ -157,6 +157,11 @@ img {
 
 #spacer {
     margin-bottom: 300px;
+}
+
+#result {
+    max-width: 100%;
+    max-height: 70vh;
 }
 </style>
 
