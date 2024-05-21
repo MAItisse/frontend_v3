@@ -6,8 +6,8 @@
     "scripts": {
         "dev": "vite --port 3000",
         "build": "run-p type-check \"build-only {@}\" --",
-        "prod": "npm run build-only; npm run preview;",
-        "preview": "vite preview --strictPort --port 9000",
+        "prod": "vite build; vite preview --strictPort --port 9000",
+        "preview": "vite preview",
         "build-only": "vite build",
         "type-check": "vue-tsc --build --force"
     },
