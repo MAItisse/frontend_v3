@@ -11,6 +11,5 @@ declare module 'vue' {
     PromptInput: typeof import('./src/components/PromptInput.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    WorkflowList: typeof import('./src/components/WorkflowList.vue')['default']
   }
 }
