@@ -24,7 +24,8 @@ export interface Workflow {
     name: string,
     icon: string,
     endpoint: string,
-    inputs: Input[]
+    inputs: Input[],
+    type?: "llm",
 }
 
 export const WORKFLOWS: { [name: string]: Workflow } = {
@@ -238,4 +239,18 @@ export const WORKFLOWS: { [name: string]: Workflow } = {
             }
         ]
     },
+    "story": {
+        name: "Story Generator",
+        icon: "book",
+        endpoint: "/createStory",
+        type: "llm",
+        inputs: [
+            {
+                name: "Prompt",
+                key: "prompt",
+                type: "text",
+                placeholder: "Dogs having fun at a water park"
+            }
+        ]
+    }
 }

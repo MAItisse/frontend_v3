@@ -11,7 +11,10 @@
         {{ button_active ? (all_inputs_entered ? "Generate" : "Empty inputs") : "Generating..." }}
     </button>
 
-    <img :src="result" v-if="result !== undefined" id="result" />
+    <div v-if="result !== undefined">
+        <pre v-if="workflow.type === 'llm'" id="result-text">{{ result }}</pre>
+        <img v-else :src="result" id="result" />
+    </div>
     <div id="spacer" />
 </template>
 
@@ -66,6 +69,13 @@ async function generate() {
         method: "POST",
         body: JSON.stringify(data)
     });
+
+    if (workflow.value.type === "llm") {
+        let data = await response.json();
+        result.value = data.choices[0].message.content;
+        button_active.value = true;
+        return;
+    }
 
     let result_url = await response.text();
 
@@ -162,6 +172,12 @@ img {
 #result {
     max-width: 100%;
     max-height: 70vh;
+}
+
+#result-text {
+    font-size: 1.4rem;
+    margin: 60px;
+    white-space: pre-wrap;
 }
 </style>
 
