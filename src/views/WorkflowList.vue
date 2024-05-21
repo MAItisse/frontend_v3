@@ -17,9 +17,24 @@ import { computed, ref, type ComputedRef } from 'vue';
 
 let search = ref("")
 
+function match(a: string, b: string): boolean {
+    return a.toLowerCase().includes(b.toLowerCase());
+}
+
 let filterd = computed(() => {
     return Object.fromEntries(Object.entries(WORKFLOWS).filter(([name, value]) => {
-        return value.name.toLowerCase().includes(search.value.toLowerCase())
+        if (match(value.name, search.value)) {
+            return true;
+        }
+        if (value.tags !== undefined) {
+            for (const tag of value.tags) {
+                if (match(tag, search.value)) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }))
 })
 </script>
@@ -45,20 +60,25 @@ let filterd = computed(() => {
 
 @media (max-width: 500px) {
     .item>h1 {
-        font-size: 2rem;  /* Larger text for better readability */
+        font-size: 2rem;
+        /* Larger text for better readability */
     }
-    
+
     .item {
-        padding: 15px; /* Larger touch area */
-        box-shadow: none; /* Removing box-shadow by default */
-        border-width: 1px; /* Thinner border on smaller screens */
+        padding: 15px;
+        /* Larger touch area */
+        box-shadow: none;
+        /* Removing box-shadow by default */
+        border-width: 1px;
+        /* Thinner border on smaller screens */
     }
-    
-    .item:active { /* Mimicking hover effect for touch */
+
+    .item:active {
+        /* Mimicking hover effect for touch */
         background-color: var(--color-background-highlight);
         border-color: var(--color-primary);
         transform: scale(.98);
-        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     }
 }
 
@@ -77,19 +97,24 @@ let filterd = computed(() => {
     margin: 1px;
     display: flex;
     align-items: center;
-    transition: all 0.3s ease; /* Smooth transition for all changes */
+    transition: all 0.3s ease;
+    /* Smooth transition for all changes */
 }
 
 .item:hover {
-    background-color: var(--color-background-highlight); /* Lighter background on hover */
-    border-color: var(--color-primary); /* Highlighted border color */
-    transform: scale(.99); /* Slight scale */
+    background-color: var(--color-background-highlight);
+    /* Lighter background on hover */
+    border-color: var(--color-primary);
+    /* Highlighted border color */
+    transform: scale(.99);
+    /* Slight scale */
     cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle shadow */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow */
 }
 
 .item:hover h1 {
-    color: var(--color-text-highlight); /* Text color change on hover */
+    color: var(--color-text-highlight);
+    /* Text color change on hover */
 }
-
 </style>
