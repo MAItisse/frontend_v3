@@ -16,8 +16,7 @@
     "pinia": "^2.1.7",
     "vue": "^3.4.21",
     "vue-lazyload": "^3.0.0",
-    "vue-router": "^4.3.0",
-    "vue3-mq": "^3.2.0"
+    "vue-router": "^4.3.0"
   },
   "devDependencies": {
     "@tsconfig/node20": "^20.1.4",

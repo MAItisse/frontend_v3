@@ -2,31 +2,27 @@
     <div id="logo">
         M<span id="ai">AI</span>tisse
     </div>
-    <MqResponsive target="lg+">
-        <div id="product_list">
-            We have <div id="typing"></div>
-            <span style="color: gray">Create Image</span>
-            <br />
-            <div id="list" data-theme="reverse">
-                <div v-for="product in PRODUCTS" :key="product.link" class="item">
-                    <RouterLink :to="product.link">
-                        <mdicon :name="product.icon" size="2.5rem" />
-                        {{ product.name }}
-                    </RouterLink>
-                </div>
-                <div class="item">
-                    <RouterLink to="/workflows">
-                        ...
-                    </RouterLink>
-                </div>
+    <div id="product_list">
+        We have <div id="typing"></div>
+        <span style="color: gray">Create Image</span>
+        <br />
+        <div id="list" data-theme="reverse">
+            <div v-for="product in PRODUCTS" :key="product.link" class="item">
+                <RouterLink :to="product.link">
+                    <mdicon :name="product.icon" size="2.5rem" />
+                    {{ product.name }}
+                </RouterLink>
+            </div>
+            <div class="item">
+                <RouterLink to="/workflows">
+                    ...
+                </RouterLink>
             </div>
         </div>
-    </MqResponsive>
+    </div>
 </template>
 
 <script setup lang="ts">
-import { MqResponsive } from "vue3-mq";
-
 interface Product {
     icon: string,
     name: string, link: string,
@@ -66,6 +62,7 @@ interface Product {
         font-size: 4rem;
     }
 }
+
 
 @media(orientation: landscape) {
     #logo {
@@ -112,6 +109,12 @@ interface Product {
     text-align: center;
 
     transform: translateX(50px);
+}
+
+@media(max-width: 1000px) {
+    #product_list {
+        display: none;
+    }
 }
 
 #typing {

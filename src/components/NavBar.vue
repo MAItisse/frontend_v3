@@ -1,14 +1,14 @@
 <template>
     <div></div>
     <header>
-        <MqResponsive target="md+" id="left">
+        <div id="left">
             <RouterLink to="/">
                 <img src="/favicon.png" />
             </RouterLink>
             <RouterLink to="/">
                 <h1>MAItisse</h1>
             </RouterLink>
-        </MqResponsive>
+        </div>
 
         <div id="center">
             <RouterLink to="workflows">
@@ -30,7 +30,6 @@
 import { useStorage } from "@vueuse/core";
 import { ref, watch } from "vue";
 import { useDiscord } from "@/stores/discord"
-import { MqResponsive } from "vue3-mq";
 
 let discord = useDiscord();
 
@@ -164,5 +163,11 @@ img {
 
 #tokens {
     margin-right: 20px;
+}
+
+@media(max-width: 800px) {
+    #left {
+        display: none;
+    }
 }
 </style>
