@@ -34,6 +34,7 @@ export const WORKFLOWS: { [name: string]: Workflow } = {
         name: "Create Image",
         icon: "camera-plus",
         endpoint: "startCreateImage",
+        tags: ["image", "img"],
         inputs: [
             {
                 name: "Prompt",
@@ -47,6 +48,7 @@ export const WORKFLOWS: { [name: string]: Workflow } = {
         name: "Similar Image",
         icon: "image-edit",
         endpoint: "startSimilarImages",
+        tags: ["image", "img"],
         inputs: [
             {
                 name: "Base Image",
@@ -65,6 +67,7 @@ export const WORKFLOWS: { [name: string]: Workflow } = {
         name: "Combine Images",
         icon: "folder-multiple-image",
         endpoint: "startCombineImages",
+        tags: ["image", "img"],
         inputs: [
             {
                 name: "Image 1",
@@ -88,6 +91,7 @@ export const WORKFLOWS: { [name: string]: Workflow } = {
         name: "Retheme Image",
         icon: "theme-light-dark",
         endpoint: "startRethemeImage",
+        tags: ["image", "img"],
         inputs: [
             {
                 name: "Base Image",
@@ -106,6 +110,7 @@ export const WORKFLOWS: { [name: string]: Workflow } = {
         name: "Qr Image",
         icon: "qrcode",
         endpoint: "startQrCode",
+        tags: ["image", "img"],
         inputs: [
             {
                 name: "QR Code Data (URL, text)",
@@ -125,6 +130,7 @@ export const WORKFLOWS: { [name: string]: Workflow } = {
         name: "Outpaint Image",
         icon: "vector-rectangle",
         endpoint: "startOutpaintImages",
+        tags: ["image", "img", "extend"],
         inputs: [
             {
                 name: "Base Image",
@@ -163,6 +169,7 @@ export const WORKFLOWS: { [name: string]: Workflow } = {
         name: "FaceSwap Image",
         icon: "face-recognition",
         endpoint: "startImageFaceSwap",
+        tags: ["image", "img"],
         inputs: [
             {
                 name: "Base Image",
@@ -186,6 +193,7 @@ export const WORKFLOWS: { [name: string]: Workflow } = {
         name: "StickerBomb Image",
         icon: "sticker-emoji",
         endpoint: "startStickerBomb",
+        tags: ["image", "img"],
         inputs: [
             {
                 name: "Base Image",
@@ -198,6 +206,7 @@ export const WORKFLOWS: { [name: string]: Workflow } = {
         name: "Background Removal Image",
         icon: "image-minus-outline",
         endpoint: "startImageBackgroundRemoval",
+        tags: ["image", "img", "removebg", "remove"],
         inputs: [
             {
                 name: "Base Image",
@@ -210,6 +219,7 @@ export const WORKFLOWS: { [name: string]: Workflow } = {
         name: "Background Extender Gif",
         icon: "image-size-select-large",
         endpoint: "startBackgroundExtenderGif",
+        tags: ["extend", "gif"],
         inputs: [
             {
                 name: "Base Image",
@@ -227,7 +237,7 @@ export const WORKFLOWS: { [name: string]: Workflow } = {
                 type: "number",
             },
         ]
-    },
+    },/*
     "SpinMeGif": {
         name: "Spin image Gif",
         icon: "rotate-360",
@@ -239,13 +249,13 @@ export const WORKFLOWS: { [name: string]: Workflow } = {
                 type: "image"
             }
         ]
-    },
+    },*/
     "story": {
         name: "Story Generator",
-        icon: "book",
-        endpoint: "/createStory",
+        icon: "book-open-variant-outline",
+        endpoint: "createStory",
         type: "llm",
-        tags: ["text"],
+        tags: ["text", "txt"],
         inputs: [
             {
                 name: "Prompt",
@@ -254,5 +264,93 @@ export const WORKFLOWS: { [name: string]: Workflow } = {
                 placeholder: "Dogs having fun at a water park"
             }
         ]
-    }
+    },
+    "poem": {
+        name: "Poem Creator",
+        icon: "book",
+        endpoint: "createPoem",
+        type: "llm",
+        tags: ["text", "txt"],
+        inputs: [
+            {
+                name: "Prompt",
+                key: "prompt",
+                type: "text",
+                placeholder: "Dogs having fun at a water park"
+            }
+        ]
+    },
+    "describeImage": {
+        name: "Extend Image Description",
+        icon: "magnify-expand",
+        endpoint: "describeImage",
+        type: "llm",
+        tags: ["text", "txt"],
+        inputs: [
+            {
+                name: "Initial prompt",
+                key: "prompt",
+                type: "text",
+                placeholder: "Dogs having fun at a water park"
+            }
+        ]
+    },
+    "characterBackground": {
+        name: "Create Character Background",
+        icon: "account-edit",
+        endpoint: "characterBackground",
+        type: "llm",
+        tags: ["text", "txt"],
+        inputs: [
+            {
+                name: "Character class",
+                key: "class",
+                type: "text",
+                placeholder: "Monk"
+            },
+            {
+                name: "username",
+                key: "username",
+                type: "text",
+                placeholder: "matissetec"
+            }
+        ]
+    },
+    "createModel": {
+        name: "Create Model",
+        icon: "printer-3d",
+        endpoint: "startCreateModel",
+        tags: ["3d"],
+        inputs: [
+            {
+                name: "Base Image",
+                key: "targetPicture",
+                type: "image",
+            },
+        ]
+    },
+    // "createDancer": {
+    //     name: "Create Dancer",
+    //     icon: "human-female-dance",
+    //     endpoint: "startDancerGif",
+    //     tags: ["3d"],
+    //     inputs: [
+    //         {
+    //             name: "Base Image",
+    //             key: "targetPicture",
+    //             type: "image",
+    //         },
+    //         {
+    //             name: "Base Image",
+    //             key: "prompt",
+    //             type: "image",
+    //         },
+    //         {
+    //             name: "which dancer? 'dance1', 'dance2', 'dance3', 'dance4', 'ChickenDance', 'dance8', 'dance9', 'the_carolton', 'WaveDance', 'dance12', 'macarena'",
+    //             key: "danceChosen",
+    //             type: "text",
+    //             placeholder: "dance1"
+    //         },
+    //     ]
+    // },
 }

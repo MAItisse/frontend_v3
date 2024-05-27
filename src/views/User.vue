@@ -2,7 +2,7 @@
     <div id="filters">
         <div v-for="(_, key) in filters">
             <input type="checkbox" v-model="filters[key]" :id="key">
-            <label :for="key">{{ key }}</label>
+            <label :for="key">{{ key.replace('Images', '').replace('Image', '').replace('ackground', 'g') }}</label>
         </div>
     </div>
     <img src="/loading.gif" v-if="ongoing_fetch !== undefined" />
@@ -28,10 +28,10 @@ const filters = ref({
     qrCode: true,
     imageBackgroundRemoval: true,
     spinMe: true,
-    dancer: true,
-    Faceswap: true,
-    BgExtender: true,
-    BgRemoval: true,
+    dancerGif: true,
+    faceswap: true,
+    backgroundExtenderGif: true,
+    videoBackgroundRemoval: true,
 });
 
 function filter_to_comma(filter: { [key: string]: boolean }): string {
