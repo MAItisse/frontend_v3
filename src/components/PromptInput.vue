@@ -5,6 +5,9 @@
         <img v-lazy="value" />
     </div>
     <input v-else-if="props.data.type === 'number'" type="number" v-model="value" min="0" />
+    <select v-else-if="props.data.type === 'dropdown'" v-model="value" required>
+        <option v-for="name, key in props.data.options" :key="key" :value="key">{{ name }}</option>
+    </select>
 </template>
 
 <script setup lang="ts">

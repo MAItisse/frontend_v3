@@ -10,8 +10,12 @@ export interface ImageInput {
 export interface NumberInput {
     type: "number",
 }
+export interface DropdownInput {
+    type: "dropdown",
+    options: { [key: string]: string },
+}
 
-export type InputType = TextInput | ImageInput | NumberInput;
+export type InputType = TextInput | ImageInput | NumberInput | DropdownInput;
 
 export interface InputData {
     key: string,
@@ -329,28 +333,36 @@ export const WORKFLOWS: { [name: string]: Workflow } = {
             },
         ]
     },
-    // "createDancer": {
-    //     name: "Create Dancer",
-    //     icon: "human-female-dance",
-    //     endpoint: "startDancerGif",
-    //     tags: ["3d"],
-    //     inputs: [
-    //         {
-    //             name: "Base Image",
-    //             key: "targetPicture",
-    //             type: "image",
-    //         },
-    //         {
-    //             name: "Base Image",
-    //             key: "prompt",
-    //             type: "image",
-    //         },
-    //         {
-    //             name: "which dancer? 'dance1', 'dance2', 'dance3', 'dance4', 'ChickenDance', 'dance8', 'dance9', 'the_carolton', 'WaveDance', 'dance12', 'macarena'",
-    //             key: "danceChosen",
-    //             type: "text",
-    //             placeholder: "dance1"
-    //         },
-    //     ]
-    // },
+    "createDancer": {
+        name: "Create Dancer",
+        icon: "human-female-dance",
+        endpoint: "startDancerGif",
+        tags: ["3d"],
+        inputs: [
+            {
+                name: "Base Image",
+                key: "targetPicture",
+                type: "image",
+            },
+            {
+                name: "Dancer",
+                key: "danceChosen",
+                type: "dropdown",
+                options: {
+                    dance1: "dance1",
+                    dance2: "dance2",
+                    dance3: "dance3",
+                    dance4: "dance4",
+                    ChickenDance: "Chicken Dance",
+                    dance8: "dance8",
+                    dance9: "dance9",
+                    the_carolton: "The Carolton",
+                    WaveDance: "Wave Dance",
+                    dance12: "dance12",
+                    macarena: "Macarena"
+                }
+            }
+
+        ]
+    },
 }
