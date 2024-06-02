@@ -12,9 +12,12 @@
         "type-check": "vue-tsc --build --force"
     },
     "dependencies": {
+        "@tresjs/cientos": "^3.9.0",
+        "@tresjs/core": "^4.0.1",
         "@vueuse/core": "^10.9.0",
         "mdi-vue": "^3.0.13",
         "pinia": "^2.1.7",
+        "three": "^0.165.0",
         "vue": "^3.4.21",
         "vue-lazyload": "^3.0.0",
         "vue-router": "^4.3.0"
@@ -22,6 +25,7 @@
     "devDependencies": {
         "@tsconfig/node20": "^20.1.4",
         "@types/node": "^20.12.5",
+        "@types/three": "^0.165.0",
         "@vitejs/plugin-vue": "^5.0.4",
         "@vue/tsconfig": "^0.5.1",
         "npm-run-all2": "^6.1.2",
