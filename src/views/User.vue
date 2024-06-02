@@ -1,8 +1,12 @@
 <template>
     <div id="filters">
-        <div v-for="(_, key) in filters">
+        <div v-for="(_, key) in filters" :key="key">
             <input type="checkbox" v-model="filters[key]" :id="key">
             <label :for="key">{{ key.replace('Images', '').replace('Image', '').replace('ackground', 'g') }}</label>
+        </div>
+        <div>
+            <button @click="selectAllFilters(true)">Select All</button>
+            <button @click="selectAllFilters(false)">Select None</button>
         </div>
     </div>
     <img src="/loading.gif" v-if="ongoing_fetch !== undefined" />
@@ -19,19 +23,20 @@ const resultDataUrl = "https://deepnarrationapi.matissetec.dev/getUserResults"
 
 const filters = ref({
     createImage: true,
-    similarImages: true,
-    combineImage: true,
-    rethemeImage: true,
-    outpaintImage: true,
-    stickerBomb: true,
-    cannyFaceswap: true,
-    qrCode: true,
-    imageBackgroundRemoval: true,
-    spinMe: true,
-    dancerGif: true,
-    faceswap: true,
-    backgroundExtenderGif: true,
-    videoBackgroundRemoval: true,
+    similarImages: false,
+    combineImage: false,
+    rethemeImage: false,
+    outpaintImage: false,
+    stickerBomb: false,
+    cannyFaceswap: false,
+    qrCode: false,
+    imageBackgroundRemoval: false,
+    spinMe: false,
+    dancerGif: false,
+    faceswap: false,
+    backgroundExtenderGif: false,
+    videoBackgroundRemoval: false,
+    createModel: false,
 });
 
 function filter_to_comma(filter: { [key: string]: boolean }): string {
@@ -48,24 +53,30 @@ async function load_images() {
     results.value = data;
 }
 
+function selectAllFilters(selectAll: boolean) {
+    Object.keys(filters.value).forEach(key => {
+        filters.value[key] = selectAll;
+    });
+    load_images();
+}
 
 watch(() => discord.dataLoaded, () => {
     if (discord.dataLoaded) {
         load_images();
     }
-}, { immediate: true })
+}, { immediate: true });
 
 let ongoing_fetch: Ref<undefined | number> = ref(undefined);
 watch(filters.value, () => {
-    if (ongoing_fetch !== undefined) {
+    if (ongoing_fetch.value !== undefined) {
         clearTimeout(ongoing_fetch.value);
     }
 
     ongoing_fetch.value = setTimeout(() => {
         ongoing_fetch.value = undefined;
-        load_images()
-    }, 1000)
-})
+        load_images();
+    }, 1000);
+});
 </script>
 
 <style scoped>
@@ -94,4 +105,11 @@ input {
     display: grid;
     grid-template-columns: repeat(auto-fill, 500px);
 }
-</style> 
+
+button {
+    margin-right: 10px;
+    padding: 10px;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+</style>
