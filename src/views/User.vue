@@ -9,8 +9,10 @@
             <button @click="selectAllFilters(false)">Select None</button>
         </div>
     </div>
-    <img src="/loading.gif" v-if="ongoing_fetch !== undefined" />
-    <img v-for="image in results" :key="image" v-lazy="image" />
+    <img src="/loading.gif" v-if="ongoing_fetch !== undefined" class="img" />
+    <suspense>
+        <ResultViewer v-for="image in results" :key="image" :url="image" class="img" />
+    </suspense>
 </template>
 
 <script setup lang="ts">
@@ -79,7 +81,7 @@ watch(filters.value, () => {
 </script>
 
 <style scoped>
-img {
+.img {
     max-width: 100%;
     min-width: 300px;
     height: 300px;
