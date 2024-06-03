@@ -57,7 +57,6 @@ function selectAllFilters(selectAll: boolean) {
     Object.keys(filters.value).forEach(key => {
         filters.value[key] = selectAll;
     });
-    load_images();
 }
 
 watch(() => discord.dataLoaded, () => {
