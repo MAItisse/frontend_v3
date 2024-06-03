@@ -169,6 +169,7 @@ img {
 
 #tokens {
     margin-right: 20px;
+    color: var(--color-heading);
 }
 #navButton {
     padding-right: 20px;
