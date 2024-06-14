@@ -15,7 +15,7 @@
             </div>
             <div class="item">
                 <RouterLink to="/workflows">
-                    ...
+                    ... and more
                 </RouterLink>
             </div>
         </div>

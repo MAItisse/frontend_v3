@@ -19,6 +19,14 @@ const router = createRouter({
             path: "/:workflow",
             component: () => import("@/views/Workflow.vue"),
         },
+        {
+            path: "/contact",
+            component: () => import("@/views/Contact.vue"),
+        },
+        {
+            path: "/tokens",
+            component: () => import("@/views/Tokens.vue"),
+        }
     ]
 })
 
