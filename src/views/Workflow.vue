@@ -15,6 +15,9 @@
         <pre v-if="workflow.type === 'llm'" id="result-text">{{ result }}</pre>
         <suspense v-else>
             <ResultViewer :url="result" id="result" />
+            <template #fallback>
+                <ResultViewer url="/loading.gif" class="img" />
+            </template>
         </suspense>
     </div>
     <div id="spacer" />
