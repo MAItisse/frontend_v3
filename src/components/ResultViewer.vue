@@ -1,12 +1,12 @@
 <template>
     <div v-if="props.url.endsWith('obj')">
-        <suspense v-if="load">
-            <ModelViewer :url="props.url" />
+        <suspense v-if="visible">
+            <ModelViewer :url="props.url" ref="elem" />
             <template #fallback>
-                <ResultViewer url="/loading.gif" />
+                <ResultViewer ref="elem" url="/loading.gif" />
             </template>
         </suspense>
-        <div ref="loading_elem" v-else>
+        <div ref="elem" v-else>
             <ResultViewer url="/loading.gif" />
         </div>
     </div>
@@ -16,22 +16,13 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useElementVisibility } from '@vueuse/core'
-import { watch } from 'vue';
 
 let props = defineProps<{
     url: string,
 }>();
 
-let load = ref(false);
-
-const loading_elem = ref(null);
-const visible = useElementVisibility(loading_elem);
-
-watch(() => visible.value, () => {
-    if (visible.value) {
-        load.value = true;
-    }
-})
+const elem = ref(null);
+const visible = useElementVisibility(elem);
 </script>
 
 <style scoped></style>
