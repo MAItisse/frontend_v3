@@ -21,12 +21,11 @@
             <RouterLink to="/user">
                 <img id="avatar" :src="discord.avatarUrl" />
             </RouterLink>
-            <span id="tokens">tokens: {{ tokens }}</span>
+            <RouterLink to="/tokens">
+                <span id="navButton">tokens: {{ tokens }}</span>
+            </RouterLink>
             <RouterLink to="/contact">
                 <span id="navButton">Contact Us</span>
-            </RouterLink>
-            <RouterLink to="/tokens">
-                <span id="navButton">Get Tokens</span>
             </RouterLink>
         </div>
     </header>
@@ -167,12 +166,9 @@ img {
     }
 }
 
-#tokens {
+#navButton {
     margin-right: 20px;
     color: var(--color-heading);
-}
-#navButton {
-    padding-right: 20px;
 }
 
 @media(max-width: 800px) {
