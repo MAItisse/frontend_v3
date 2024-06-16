@@ -10,8 +10,8 @@
         </div>
     </div>
     <img src="/loading.gif" v-if="ongoing_fetch !== undefined" class="img" />
-    <suspense>
-        <ResultViewer v-for="image in results" :key="image" :url="image" class="img" />
+    <suspense v-for="image in results" :key="image">
+        <ResultViewer :url="image" class="img" />
     </suspense>
 </template>
 

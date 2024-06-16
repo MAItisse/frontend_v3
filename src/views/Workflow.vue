@@ -13,7 +13,9 @@
 
     <div v-if="result !== undefined">
         <pre v-if="workflow.type === 'llm'" id="result-text">{{ result }}</pre>
-        <img v-else :src="result" id="result" />
+        <suspense v-else>
+            <ResultViewer :url="result" id="result" />
+        </suspense>
     </div>
     <div id="spacer" />
 </template>
@@ -159,12 +161,6 @@ async function generate() {
     color: white;
 }
 
-img {
-    margin-left: 50%;
-    transform: translateX(-50%);
-    margin-top: 40px;
-}
-
 #spacer {
     margin-bottom: 300px;
 }
@@ -172,6 +168,9 @@ img {
 #result {
     max-width: 100%;
     max-height: 70vh;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    margin-top: 40px;
 }
 
 #result-text {

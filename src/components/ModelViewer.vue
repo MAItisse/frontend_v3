@@ -1,26 +1,28 @@
 <template>
-    <div>
+    <div @scroll="scroll">
         <TresCanvas>
-            <TresPerspectiveCamera />
-            <OrbitControls />
-            <primitive :object="stuff" />
+            <TresPerspectiveCamera :position="[1, 1, 1]" :look-at="[0, 0, 0]" />
+            <primitive :object="obj" />
             <TresAmbientLight />
+            <OrbitControls :enable-zoom="false" />
         </TresCanvas>
     </div>
 </template>
 
 <script setup lang="ts">
 import { TresCanvas, useLoader } from '@tresjs/core'
-import { OrbitControls } from '@tresjs/cientos'
+import { OrbitControls, ScrollControls } from '@tresjs/cientos'
 import { OBJLoader } from 'three/addons/loaders/OBJLoader'
 
 let props = defineProps<{
     url: string,
 }>();
 
-console.log(OBJLoader);
-const stuff = await useLoader(OBJLoader, props.url)
-console.log(stuff); 
+const obj = await useLoader(OBJLoader, props.url)
+
+function scroll(event: Event) {
+    console.log("SCROLL");
+}
 </script>
 
 <style scoped>
