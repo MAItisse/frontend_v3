@@ -6,13 +6,13 @@
                 <img src="/favicon.png" />
             </RouterLink>
             <RouterLink to="/">
-                <h1>MAItisse</h1>
+                <h1 class="navButton">MAItisse</h1>
             </RouterLink>
         </div>
 
         <div id="center">
             <RouterLink to="workflows">
-                <h1>Workflows</h1>
+                <h1 class="navButton">Workflows</h1>
             </RouterLink>
         </div>
 
@@ -22,10 +22,10 @@
                 <img id="avatar" :src="discord.avatarUrl" />
             </RouterLink>
             <RouterLink to="/tokens">
-                <span id="navButton">tokens: {{ tokens }}</span>
+                <span class="navButton">tokens: {{ tokens }}</span>
             </RouterLink>
             <RouterLink to="/contact">
-                <span id="navButton">Contact Us</span>
+                <span class="navButton">Contact Us</span>
             </RouterLink>
         </div>
     </header>
@@ -166,9 +166,13 @@ img {
     }
 }
 
-#navButton {
+.navButton {
     margin-right: 20px;
     color: var(--color-heading);
+}
+
+.navButton:hover {
+    text-decoration: underline;
 }
 
 @media(max-width: 800px) {
