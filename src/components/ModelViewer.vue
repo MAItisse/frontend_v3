@@ -10,15 +10,20 @@
 </template>
 
 <script setup lang="ts">
-import { TresCanvas, useLoader } from '@tresjs/core'
-import { OrbitControls, ScrollControls } from '@tresjs/cientos'
+import { TresCanvas, useLoader, dispose } from '@tresjs/core'
+import { OrbitControls } from '@tresjs/cientos'
 import { OBJLoader } from 'three/addons/loaders/OBJLoader'
+import { onUnmounted } from 'vue';
+import { onBeforeUnmount } from 'vue';
 
 let props = defineProps<{
     url: string,
 }>();
 
-const obj = await useLoader(OBJLoader, props.url)
+let obj = await useLoader(OBJLoader, props.url)
+onBeforeUnmount(() => {
+    dispose(obj)
+})
 
 function download(url: string) {
     const a = document.createElement('a')
@@ -34,6 +39,7 @@ function click(mouse: MouseEvent) {
         download(props.url);
     }
 }
+
 </script>
 
 <style scoped>
