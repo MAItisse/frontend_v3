@@ -13,12 +13,7 @@
 
     <div v-if="result !== undefined">
         <pre v-if="workflow.type === 'llm'" id="result-text">{{ result }}</pre>
-        <suspense v-else>
-            <ResultViewer :url="result" id="result" />
-            <template #fallback>
-                <ResultViewer url="/loading.gif" class="img" />
-            </template>
-        </suspense>
+        <ResultViewer v-else :url="result" id="result" />
     </div>
     <div id="spacer" />
 </template>

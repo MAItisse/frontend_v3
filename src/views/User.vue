@@ -10,12 +10,7 @@
         </div>
     </div>
     <img src="/loading.gif" v-if="ongoing_fetch !== undefined" class="img" />
-    <suspense v-for="image in results" :key="image">
-        <ResultViewer :url="image" class="img" />
-        <template #fallback>
-            <ResultViewer url="/loading.gif" class="img" />
-        </template>
-    </suspense>
+    <ResultViewer v-for="image in results" :key="image" :url="image" class="img" />
 </template>
 
 <script setup lang="ts">

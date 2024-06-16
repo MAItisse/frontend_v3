@@ -1,5 +1,10 @@
 <template>
-    <ModelViewer v-if="props.url.endsWith('obj')" :url="props.url" />
+    <suspense v-if="props.url.endsWith('obj')">
+        <ModelViewer :url="props.url" />
+        <template #fallback>
+            <ResultViewer url="/loading.gif" class="img" />
+        </template>
+    </suspense>
     <img v-else v-lazy="props.url">
 </template>
 
