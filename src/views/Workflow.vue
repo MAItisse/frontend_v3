@@ -166,9 +166,9 @@ async function generate() {
 #result {
     max-width: 100%;
     max-height: 70vh;
+
     margin-left: 50%;
     transform: translateX(-50%);
-    margin-top: 40px;
 }
 
 #result-text {
