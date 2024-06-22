@@ -81,8 +81,8 @@ watch(filters.value, () => {
 <style scoped>
 .img {
     max-width: 100%;
-    min-width: 300px;
-    height: 300px;
+    min-width: 500px;
+    height: 500px;
     object-fit: contain;
 
     display: inline-block;
