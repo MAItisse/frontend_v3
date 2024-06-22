@@ -44,8 +44,8 @@ function click(mouse: MouseEvent) {
 
 <style scoped>
 div {
-    width: 300px;
-    height: 300px;
+    width: 500px;
+    height: 500px;
     display: inline-block;
 
     margin: 0px;
