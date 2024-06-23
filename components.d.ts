@@ -7,6 +7,7 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    FunTyper: typeof import('./src/components/FunTyper.vue')['default']
     ModelViewer: typeof import('./src/components/ModelViewer.vue')['default']
     NavBar: typeof import('./src/components/NavBar.vue')['default']
     PromptInput: typeof import('./src/components/PromptInput.vue')['default']
