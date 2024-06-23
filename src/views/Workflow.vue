@@ -71,13 +71,6 @@ async function generate() {
         body: JSON.stringify(data)
     });
 
-    if (workflow.value.type === "llm") {
-        let data = await response.json();
-        result.value = data.choices[0].message.content;
-        button_active.value = true;
-        return;
-    }
-
     let result_url = await response.text();
     let urlToCheck = result_url;
     if (workflow.value.type === "alphabet") {
@@ -96,7 +89,12 @@ async function generate() {
         await new Promise((resolve) => setTimeout(resolve, 5000));
     }
 
-    result.value = result_url;
+    if (workflow.value.type === "llm") {
+        let resp = await fetch(result_url);
+        result.value = await resp.text();
+    } else {
+        result.value = result_url;
+    }
     button_active.value = true;
     console.log("DONE")
 }
