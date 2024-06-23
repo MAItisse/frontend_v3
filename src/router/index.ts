@@ -26,10 +26,6 @@ const router = createRouter({
         {
             path: "/tokens",
             component: () => import("@/views/Tokens.vue"),
-        },
-        {
-            path: "/funTyper",
-            component: () => import("@/views/FunTyper.vue"),
         }
     ]
 })

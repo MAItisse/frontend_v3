@@ -29,7 +29,7 @@ export interface Workflow {
     icon: string,
     endpoint: string,
     inputs: Input[],
-    type?: "llm",
+    type?: "llm" | "alphabet",
     tags?: string[]
 }
 
@@ -365,4 +365,19 @@ export const WORKFLOWS: { [name: string]: Workflow } = {
 
         ]
     },
+    "funTyper": {
+        name: "Fun Typer",
+        icon: "keyboard",
+        endpoint: "startAlphabetImages",
+        tags: ["text", "txt"],
+        type: "alphabet",
+        inputs: [
+            {
+                name: "Prompt",
+                key: "prompt",
+                type: "text",
+                placeholder: "Dogs"
+            }
+        ]
+    }
 }

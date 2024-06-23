@@ -13,6 +13,7 @@
 
     <div v-if="result !== undefined">
         <pre v-if="workflow.type === 'llm'" id="result-text">{{ result }}</pre>
+        <FunTyper v-else-if="workflow.type === 'alphabet'" :url="result" />
         <ResultViewer v-else :url="result" id="result" />
     </div>
     <div id="spacer" />
@@ -78,10 +79,14 @@ async function generate() {
     }
 
     let result_url = await response.text();
-
+    let urlToCheck = result_url;
+    if(workflow.value.type === "alphabet") {
+        urlToCheck += "26_letter/png"
+    }
     while (true) {
         try {
-            let resp = await fetch(result_url);
+                
+            let resp = await fetch(urlToCheck);
 
             if (resp.status === 200) {
                 break;

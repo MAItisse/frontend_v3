@@ -3,7 +3,7 @@
         <textarea v-model="textInput"></textarea>
         <div>
             <template v-for="c in textInput.toLowerCase()">
-                <img v-if="c in letterMappings" :src="`${baseUrl}${letterMappings[c]}`" :alt="c">
+                <img v-if="c in letterMappings" :src="`${props.url}${letterMappings[c]}`" :alt="c">
                 <div class="missing" v-else />
             </template>
         </div>
@@ -13,8 +13,11 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
+let props = defineProps<{
+    url: string,
+}>();
+
 const textInput = ref("");
-const baseUrl = "https://fileserver.matissetec.dev/output/alphabetImages/630649313860780043/7447474056/"
 const letterMappings: { [letter: string]: string } = {
     "a": "01_letter/png",
     "b": "02_letter/png",
