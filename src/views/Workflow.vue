@@ -80,13 +80,13 @@ async function generate() {
 
     let result_url = await response.text();
     let urlToCheck = result_url;
-    if(workflow.value.type === "alphabet") {
+    if (workflow.value.type === "alphabet") {
         urlToCheck += "26_letter/png"
     }
     while (true) {
         try {
-                
-            let resp = await fetch(urlToCheck);
+
+            let resp = await fetch(urlToCheck, { method: "HEAD" });
 
             if (resp.status === 200) {
                 break;
