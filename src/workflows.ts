@@ -110,6 +110,45 @@ export const WORKFLOWS: { [name: string]: Workflow } = {
             }
         ]
     },
+    "relight" :{
+        name: "Relight Image",
+        icon: "format-color-fill",
+        endpoint: "startRelightImage",
+        tags: ["image", "img"],
+        inputs: [
+            {
+                name: "Base Image",
+                key: "targetPicture",
+                type: "image",
+            },
+            {
+                name: "xLocation (0-512)",
+                key: "xLocation",
+                type: "number"
+            },
+            {
+                name: "yLocation (0-512)",
+                key: "yLocation",
+                type: "number"
+            },
+            {
+                name: "height (0-512)",
+                key: "height",
+                type: "number"
+            },
+            {
+                name: "width (0-512)",
+                key: "width",
+                type: "number"
+            },
+            {
+                name: "Prompt",
+                key: "prompt",
+                type: "text",
+                placeholder: "Painting"
+            }
+        ]
+    },
     "qrcode": {
         name: "Qr Image",
         icon: "qrcode",

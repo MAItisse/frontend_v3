@@ -1,23 +1,28 @@
 <template>
     <div>
         <textarea v-model="textInput"></textarea>
+        <input type="range" v-model="sliderValue" value="40" min="10" max="128" />
         <div>
-            <template v-for="c in textInput.toLowerCase()">
-                <img v-if="c in letterMappings" :src="`${props.url}${letterMappings[c]}`" :alt="c">
-                <div class="missing" v-else />
-            </template>
+            <canvas ref="canvas" width="500" height="500"></canvas>
         </div>
+        <button @click="downloadImage">Download Image</button>
     </div>
 </template>
-  
-<script setup lang="ts">
-import { ref } from 'vue';
 
-let props = defineProps<{
+<script setup lang="ts">
+import { ref, watch, onMounted } from 'vue';
+
+const props = defineProps<{
     url: string,
 }>();
 
-const textInput = ref("");
+const textInput = ref<string>("");
+const canvas = ref<HTMLCanvasElement | null>(null);
+const canvasWidth = 500;
+const canvasHeight = 500;
+const sliderValue = ref<number>(40);
+let txtSize = 40;
+
 const letterMappings: { [letter: string]: string } = {
     "a": "01_letter/png",
     "b": "02_letter/png",
@@ -46,6 +51,57 @@ const letterMappings: { [letter: string]: string } = {
     "y": "25_letter/png",
     "z": "26_letter/png"
 };
+
+function drawCanvas() {
+    if (!canvas.value) return;
+    const ctx = canvas.value.getContext('2d');
+    if (!ctx) return;
+
+    ctx.clearRect(0, 0, canvasWidth, canvasHeight); // clear canvas before redrawing
+    
+    txtSize = +sliderValue.value;
+    let x = 0;
+    let y = 0;
+
+    for (let c of textInput.value.toLowerCase()) {
+        const img = new Image();
+        img.crossOrigin = "Anonymous";
+        img.width = txtSize;
+        img.height = txtSize;
+        img.style.marginRight = txtSize + "px";
+        if (c in letterMappings) {
+            img.src = `${props.url}${letterMappings[c]}`;
+        } 
+        else {
+            img.src = `${props.url}space/png`;
+        }
+        img.onload = () => {
+            ctx.drawImage(img, x, y, txtSize, txtSize);
+            x += txtSize;
+
+            if (x + txtSize > canvasWidth) {
+                x = 0;
+                y += txtSize;
+            }
+        };
+    }
+}
+
+function downloadImage() {
+    if (!canvas.value) return;
+    const imgData = canvas.value.toDataURL('image/png');
+    const link = document.createElement('a');
+    link.href = imgData;
+    link.download = 'download.png';
+    link.click();
+}
+
+// Watch textInput and call drawCanvas whenever it changes
+watch(textInput, drawCanvas);
+watch(sliderValue, drawCanvas);
+
+// Call drawCanvas when the component is mounted
+onMounted(drawCanvas);
 </script>
   
 <style scoped>
@@ -57,12 +113,4 @@ textarea {
 div {
     margin-top: 10px;
 }
-
-img,
-.missing {
-    width: 3rem;
-    height: 3rem;
-    display: inline-block;
-}
 </style>
-  
