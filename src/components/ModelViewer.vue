@@ -3,7 +3,23 @@
         <TresCanvas>
             <TresPerspectiveCamera :position="[1, 1, 1]" :look-at="[0, 0, 0]" />
             <primitive :object="obj" />
-            <TresAmbientLight />
+            <TresAmbientLight :intensity="1.0" /> <!-- Ambient light for overall illumination -->
+            <!-- Front Top Right -->
+            <TresDirectionalLight :intensity="1.5" :position="[5, 5, 5]" />
+            <!-- Front Top Left -->
+            <TresDirectionalLight :intensity="1.5" :position="[-5, 5, 5]" />
+            <!-- Back Top Right -->
+            <TresDirectionalLight :intensity="1.5" :position="[5, 5, -5]" />
+            <!-- Back Top Left -->
+            <TresDirectionalLight :intensity="1.5" :position="[-5, 5, -5]" />
+            <!-- Front Bottom Right -->
+            <TresDirectionalLight :intensity="1.5" :position="[5, -5, 5]" />
+            <!-- Front Bottom Left -->
+            <TresDirectionalLight :intensity="1.5" :position="[-5, -5, 5]" />
+            <!-- Back Bottom Right -->
+            <TresDirectionalLight :intensity="1.5" :position="[5, -5, -5]" />
+            <!-- Back Bottom Left -->
+            <TresDirectionalLight :intensity="1.5" :position="[-5, -5, -5]" />
             <OrbitControls :enable-zoom="false" />
         </TresCanvas>
     </div>
