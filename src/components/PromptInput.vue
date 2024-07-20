@@ -18,10 +18,11 @@ let props = defineProps<{
     data: InputType
 }>();
 
-let value: ModelRef<number | undefined> = defineModel();
+let value: ModelRef<number | string | undefined> = defineModel();
 
 watch(value, () => {
-    if (value.value !== undefined && value.value < 0) {
+    let value = value.value;
+    if (typeof value == number && number < 0) {
         value.value = 0;
     }
 })
