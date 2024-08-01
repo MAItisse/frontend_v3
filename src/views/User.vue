@@ -10,8 +10,15 @@
     </div>
   </div>
   <img src="/loading.gif" v-if="ongoing_fetch !== undefined" class="img" />
-  <div v-if="results.length > 0" id="share-options">
-    <button @click="shareImages">Share Selected Images</button>
+  <div class="sharedItemsButtons" id="share-options">
+    <div>
+      <button v-if="results.length > 0" @click="shareObjects">Share Selected Objects</button>
+      <button @click="deleteImages">Delete Selected Objects</button>
+    </div>
+    <div>
+      <button @click="showSharedObjects">Show My Shared Objects</button>
+      <button v-if="results.length > 0 && showShared" @click="removeSharedObjects">Remove Selected Shared Objects</button>
+    </div>
   </div>
   <ResultViewer v-for="image in results" :key="image" :url="image" :selected="selectedImages.includes(image)" @select="toggleImageSelection" />
 </template>
@@ -56,6 +63,7 @@
   }
   
   const results: Ref<string[]> = ref([]);
+  const showShared: Ref<boolean> = ref(false);
   const selectedImages: Ref<string[]> = ref([]);
   
   async function load_images() {
@@ -81,7 +89,7 @@
     }
   }
   
-  async function shareImages() {
+  async function shareObjects() {
     // Implement sharing functionality here
     console.log('Sharing images:', selectedImages.value);
     for (const image of selectedImages.value) {
@@ -99,9 +107,56 @@
         });
     }
   }
+
+  async function showSharedObjects() {
+    // Implement showing shared images functionality here
+    console.log('Showing shared images');
+    let url = `https://deepnarrationapi.matissetec.dev/myPublicResults`;
+    let result = await fetch(url, {
+        method: "POST",
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            discordId: discord.info.user_id,
+        })
+    });
+    let data = await result.json();
+    console.log(data);
+    showShared.value = true;
+    results.value = data;
+  }
+
+  async function removeSharedObjects() {//630649313860780043/8868341422
+    let url = `https://deepnarrationapi.matissetec.dev/unpublishItem`;
+    for (const image of selectedImages.value) {
+        const data = image.split('/');
+        console.log("unpublishing " + data[4] + " " + data[7] + "." + data[8]);
+        await fetch(url, {
+            method: "POST",
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                discordId: data[5],
+                jobId: data[6],
+            })
+        });
+    }
+    showSharedObjects();
+  }
+
+  async function deleteImages() {
+    // Implement deleting images functionality here
+    console.log('Deleting images:', selectedImages.value);
+    for (const image of selectedImages.value) {
+        const data = image.split('/');
+        console.log(data[4] + " " + data[7]+"."+data[8]);
+        await fetch(`https://deepnarrationapi.matissetec.dev/deleteResult/${data[5]}/${data[6]}`);
+    }
+    selectedImages.value = [];
+    load_images();
+  }
   
   watch(() => discord.dataLoaded, () => {
     if (discord.dataLoaded) {
+      showShared.value = false;
       load_images();
     }
   }, { immediate: true });
@@ -117,6 +172,7 @@
       // remove urls that are not in the new filter list filters
       selectedImages.value = selectedImages.value.filter(image => filter_to_comma(filters.value).split(",").some(filter => image.includes(filter)));
       
+      showShared.value = false;
       load_images();
     }, 1000);
   });
@@ -156,5 +212,9 @@
   
   #share-options {
     margin-top: 20px;
+  }
+
+  .sharedItemsButtons {
+    display: flex;
   }
 </style>
