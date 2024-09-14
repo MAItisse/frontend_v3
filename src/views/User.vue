@@ -42,6 +42,7 @@
     cannyFaceswap: false,
     qrCode: false,
     imageBackgroundRemoval: false,
+    videoBackgroundRemoval: false,
     alphabetImages: false,
     spinMe: false,
     dancerGif: false,

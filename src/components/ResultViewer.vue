@@ -52,6 +52,8 @@
     position: relative;
     display: inline-block;
     margin: 10px;
+    width: 500px;
+    height: 500px;
   }
   
   .checkbox-overlay {
@@ -82,7 +84,6 @@
     font-size: 1.5rem;
     margin: 0;
     padding: 10px;
-    width: 500px;
     height: 500px;
     overflow: auto;
   }
