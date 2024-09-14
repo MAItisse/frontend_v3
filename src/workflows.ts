@@ -280,6 +280,19 @@ export const WORKFLOWS: { [name: string]: Workflow } = {
                 type: "number",
             },
         ]
+    },
+    "BackgroundRemovalGif": {
+        name: "Background Removal Gif",
+        icon: "image-size-select-large",
+        endpoint: "startVideoBackgroundRemoval",
+        tags: ["remove", "gif"],
+        inputs: [
+            {
+                name: "Base Gif",
+                key: "videoUrl",
+                type: "image"
+            },
+        ]
     },/*
     "SpinMeGif": {
         name: "Spin image Gif",
