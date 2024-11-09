@@ -2,47 +2,95 @@
     <div id="logo">
         M<span id="ai">AI</span>tisse
     </div>
-    <div id="product_list">
-        We have <div id="typing"></div>
-        <span style="color: gray">Create Image</span>
-        <br />
-        <div id="list" data-theme="reverse">
-            <div v-for="product in PRODUCTS" :key="product.link" class="item">
-                <RouterLink :to="product.link">
-                    <mdicon :name="product.icon" size="2.5rem" />
-                    {{ product.name }}
-                </RouterLink>
-            </div>
-            <div class="item">
-                <RouterLink to="/workflows">
-                    ... and more
-                </RouterLink>
-            </div>
+    <h1>Discovery</h1>
+    <p>See what others have made</p>
+    <!-- <FilterSelector /> -->
+    <div id="filters">
+        <div v-for="(_, key) in filters" :key="key">
+            <input type="checkbox" v-model="filters[key]" :id="key">
+            <label :for="key">{{ key.replace('Images', '').replace('Image', '').replace('ackground', 'g') }}</label>
+        </div>
+        <div>
+            <button @click="selectAllFilters(true)">Select All</button>
+            <button @click="selectAllFilters(false)">Select None</button>
         </div>
     </div>
+    <img src="/loading.gif" v-if="ongoing_fetch !== undefined" class="img" />
+    <ResultViewer v-for="image in results" :key="image" :url="image" class="img" />
 </template>
 
 <script setup lang="ts">
-interface Product {
-    icon: string,
-    name: string, link: string,
-} const PRODUCTS: Product[] = [
-    {
-        icon: "camera-plus",
-        name: "Create Image",
-        link: "/create",
-    },
-    {
-        icon: "theme-light-dark",
-        name: "Retheme Image",
-        link: "/retheme"
-    },
-    {
-        icon: "qrcode",
-        name: "QrCode",
-        link: "/qrcode",
+import { useDiscord } from '../stores/discord'
+import { ref, watch, type Ref } from 'vue';
+const results: Ref<string[]> = ref([]);
+    let ongoing_fetch: Ref<undefined | number> = ref(undefined);
+
+    let discord = useDiscord();
+
+    load_images();
+    const resultDataUrl = "https://deepnarrationapi.matissetec.dev/getPublicResults"
+
+    const filters = ref({
+        createImage: false,
+        similarImages: false,
+        combineImage: false,
+        rethemeImage: false,
+        relightImage: false,
+        outpaintImage: false,
+        stickerBomb: false,
+        cannyFaceswap: false,
+        qrCode: false,
+        imageBackgroundRemoval: false,
+        alphabetImages: false,
+        spinMe: false,
+        dancerGif: false,
+        backgroundExtenderGif: false,
+        // videoBackgroundRemoval: false,
+        createModel: false,
+        createStory: false,
+        createPoem: false,
+        createBackStory: false,
+        // createJoke: false,
+        // createOneLiner: false,
+        // createRiddle: false,
+        // createTrivia: false,
+        createImageDescription: false,
+        // createSongIdea: false,
+    });
+
+    async function load_images() {
+        let url = `${resultDataUrl}?filter=${filter_to_comma(filters.value)}`;
+        let result = await fetch(url);
+        let data = await result.json();
+
+        results.value = data;
     }
-]
+
+    function filter_to_comma(filter: { [key: string]: boolean }): string {
+        return Object.entries(filter).filter(([_, val]) => val).map(([key, _]) => key).join(",");
+    }
+
+    function selectAllFilters(selectAll: boolean) {
+        Object.keys(filters.value).forEach(key => {
+            filters.value[key] = selectAll;
+        });
+    }
+
+    watch(filters.value, () => {
+        if (ongoing_fetch.value !== undefined) {
+            clearTimeout(ongoing_fetch.value);
+        }
+
+        ongoing_fetch.value = setTimeout(() => {
+            ongoing_fetch.value = undefined;
+            load_images();
+        }, 1000);
+    });
+    watch(() => discord.dataLoaded, () => {
+        if (discord.dataLoaded) {
+            load_images();
+        }
+    }, { immediate: true });
 </script>
 
 <style scoped>
@@ -133,34 +181,24 @@ interface Product {
     }
 }
 
-#list {
-    background-color: var(--color-background);
-    text-align: left;
-    display: inline-block;
-
-    border-radius: 20px;
-    border: solid 5px rgb(130, 130, 200);
-    box-shadow: 15px 10px 30px black;
-
-    overflow: hidden;
-    transform: translateX(150px);
+label {
+    font-size: 2rem;
 }
 
-.item {
-    font-size: 3rem;
-    border-bottom: solid gray;
+input {
+    width: 30px;
+    height: 30px;
+}
 
-    color: var(--c-primary);
+#filters {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 500px);
+}
+
+button {
+    margin-right: 10px;
     padding: 10px;
-
-    transition: all 1s;
-}
-
-.item:last-child {
-    border-bottom: none;
-}
-
-.item:hover {
-    text-decoration: underline;
+    font-size: 1.5rem;
+    cursor: pointer;
 }
 </style>

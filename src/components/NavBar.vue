@@ -27,9 +27,6 @@
             <RouterLink to="/contact">
                 <span class="navButton">Contact Us</span>
             </RouterLink>
-            <RouterLink to="/discovery">
-                <span class="navButton">Discovery</span>
-            </RouterLink>
         </div>
     </header>
 </template>
