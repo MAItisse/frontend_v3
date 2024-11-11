@@ -401,17 +401,20 @@ export const WORKFLOWS: { [name: string]: Workflow } = {
                 key: "danceChosen",
                 type: "dropdown",
                 options: {
+                    // bonesMaps name: displayed Name
                     dance1: "dance1",
                     dance2: "dance2",
                     dance3: "dance3",
                     dance4: "dance4",
+                    DanceUpRock: "Dance Up Rock",
+                    GundamDance: "Gundam Dance",
+                    crip: "crip",
                     ChickenDance: "Chicken Dance",
-                    dance8: "dance8",
-                    dance9: "dance9",
                     the_carolton: "The Carolton",
                     WaveDance: "Wave Dance",
-                    dance12: "dance12",
-                    macarena: "Macarena"
+                    macarena: "Macarena",
+                    MaraschinoStep: "Maraschino Step",
+                    twerk: "twerk"
                 }
             }
 
