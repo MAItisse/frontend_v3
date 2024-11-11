@@ -128,15 +128,15 @@ const results: Ref<string[]> = ref([]);
 }
 
 #logo:hover #ai {
-    margin-left: 20px;
-    margin-right: 20px;
+    /* margin-left: 20px;
+    margin-right: 20px; */
 
     background: linear-gradient(90deg, red, orange);
     background-clip: text;
     color: transparent;
     text-shadow: none;
 
-    font-size: 1.5em;
+    /* font-size: 1.5em; */
     rotate: 370deg;
 
     animation: hue_shift 2s infinite linear;

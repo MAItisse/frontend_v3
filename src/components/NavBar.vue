@@ -3,10 +3,7 @@
     <header>
         <div id="left">
             <RouterLink to="/">
-                <img src="/favicon.png" />
-            </RouterLink>
-            <RouterLink to="/">
-                <h1 class="navButton">MAItisse</h1>
+                <img id="favicon" src="/favicon.png" />
             </RouterLink>
         </div>
 
@@ -167,6 +164,7 @@ img {
 }
 
 .navButton {
+    font-size: 1.25rem;
     margin-right: 20px;
     color: var(--color-heading);
 }
@@ -176,8 +174,12 @@ img {
 }
 
 @media(max-width: 800px) {
-    #left {
-        display: none;
+    .navButton {
+        font-size: .75rem;
+    }
+    #favicon {
+        height: 3rem;
+        margin: 0 10px 0 25px;
     }
 }
 </style>
