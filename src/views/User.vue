@@ -51,12 +51,7 @@
     createStory: false,
     createPoem: false,
     createBackStory: false,
-    // createJoke: false,
-    // createOneLiner: false,
-    // createRiddle: false,
-    // createTrivia: false,
     createImageDescription: false,
-    // createSongIdea: false,
   });
   
   function filter_to_comma(filter: { [key: string]: boolean }): string {

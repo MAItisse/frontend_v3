@@ -1,5 +1,4 @@
 <template>
-    <div></div>
     <header>
         <div id="left">
             <RouterLink to="/">

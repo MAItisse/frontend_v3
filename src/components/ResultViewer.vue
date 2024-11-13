@@ -51,7 +51,7 @@
   .image-container {
     position: relative;
     display: inline-block;
-    margin: 10px;
+    padding: 10px;
     width: 500px;
     height: 500px;
   }
@@ -86,5 +86,12 @@
     padding: 10px;
     height: 500px;
     overflow: auto;
+  }
+
+  @media (max-width: 500px) {
+    .image-container {
+      width: 100%;
+      height: 100%;
+    }
   }
 </style>

@@ -2,17 +2,19 @@
     <div id="logo">
         M<span id="ai">AI</span>tisse
     </div>
-    <h1>Discovery</h1>
-    <p>See what others have made</p>
-    <!-- <FilterSelector /> -->
-    <div id="filters">
-        <div v-for="(_, key) in filters" :key="key">
-            <input type="checkbox" v-model="filters[key]" :id="key">
-            <label :for="key">{{ key.replace('Images', '').replace('Image', '').replace('ackground', 'g') }}</label>
-        </div>
-        <div>
-            <button @click="selectAllFilters(true)">Select All</button>
-            <button @click="selectAllFilters(false)">Select None</button>
+    <div id="discovery">
+        <h1>Discovery</h1>
+        <p>See what others have made</p>
+        <!-- <FilterSelector /> -->
+        <div id="filters">
+            <div v-for="(_, key) in filters" :key="key">
+                <input type="checkbox" v-model="filters[key]" :id="key">
+                <label :for="key">{{ key.replace('Images', '').replace('Image', '').replace('ackground', 'g') }}</label>
+            </div>
+            <div>
+                <button @click="selectAllFilters(true)">Select All</button>
+                <button @click="selectAllFilters(false)">Select None</button>
+            </div>
         </div>
     </div>
     <img src="/loading.gif" v-if="ongoing_fetch !== undefined" class="img" />
@@ -99,7 +101,7 @@ const results: Ref<string[]> = ref([]);
     width: 100%;
     color: var(--c-header);
     text-align: center;
-    margin-top: 13rem;
+    /* margin-top: 13rem; */
 
     text-shadow: 3px 3px 10px black;
     transition: all 0.5s;
@@ -108,6 +110,10 @@ const results: Ref<string[]> = ref([]);
 @media(max-width: 600px) {
     #logo {
         font-size: 4rem;
+    }
+
+    img {
+        width: 100%;
     }
 }
 
@@ -192,7 +198,11 @@ input {
 
 #filters {
     display: grid;
-    grid-template-columns: repeat(auto-fill, 500px);
+    grid-template-columns: repeat(auto-fill, 100%);
+}
+
+#discovery {
+    padding-left: 15px;
 }
 
 button {
