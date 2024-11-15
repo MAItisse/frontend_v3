@@ -11,10 +11,10 @@
                 <input type="checkbox" v-model="filters[key]" :id="key">
                 <label :for="key">{{ key.replace('Images', '').replace('Image', '').replace('ackground', 'g') }}</label>
             </div>
-            <div>
-                <button @click="selectAllFilters(true)">Select All</button>
-                <button @click="selectAllFilters(false)">Select None</button>
-            </div>
+        </div>
+        <div>
+            <button @click="selectAllFilters(true)">Select All</button>
+            <button @click="selectAllFilters(false)">Select None</button>
         </div>
     </div>
     <img src="/loading.gif" v-if="ongoing_fetch !== undefined" class="img" />
@@ -215,7 +215,18 @@ input {
     word-break: break-word; /* Breaks words if they are too long */
 }
 
-#filters button {
+
+
+
+#discovery {
+    padding-left: 15px;
+}
+
+button {
+    margin: 10px 10px 0px 0px;
+    padding: 10px;
+    font-size: 1rem;
+    cursor: pointer;
     padding: 5px 10px;
     text-align: center;
     cursor: pointer;
@@ -226,19 +237,7 @@ input {
     transition: background-color 0.3s ease; /* Hover effect */
 }
 
-#filters button:hover {
+button:hover {
     background-color: #0056b3; /* Darker hover effect */
-}
-
-
-#discovery {
-    padding-left: 15px;
-}
-
-button {
-    margin-right: 10px;
-    padding: 10px;
-    font-size: 1rem;
-    cursor: pointer;
 }
 </style>
