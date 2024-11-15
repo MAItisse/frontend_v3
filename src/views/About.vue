@@ -198,7 +198,7 @@ input {
 
 #filters {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Dynamically adjusts columns */
+    grid-template-columns: repeat(auto-fill, minmax(175px, 1fr)); /* Dynamically adjusts columns */
     gap: 10px; /* Space between grid items */
 }
 

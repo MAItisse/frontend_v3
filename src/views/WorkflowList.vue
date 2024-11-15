@@ -64,13 +64,21 @@ let filterd = computed(() => {
         /* Larger text for better readability */
     }
 
+    #list {
+        grid-template-columns: repeat(auto-fill, minmax(125px, 1fr)); /* Smaller items for smaller screens */
+        grid-auto-rows: 125px;
+    }
+
     .item {
-        padding: 15px;
-        /* Larger touch area */
-        box-shadow: none;
-        /* Removing box-shadow by default */
-        border-width: 1px;
-        /* Thinner border on smaller screens */
+        padding: 8px;
+    }
+
+    .item h1 {
+        font-size: 0.9rem; /* Adjust text size for smaller screens */
+    }
+
+    .item .icon {
+        font-size: 1.5rem; /* Adjust icon size for smaller screens */
     }
 
     .item:active {
@@ -91,30 +99,56 @@ let filterd = computed(() => {
     display: inline;
 }
 
+#list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(175px, 1fr)); /* Dynamically adjust columns */
+    gap: 10px; /* Space between items */
+    grid-auto-rows: 150px;
+    padding: 10px; /* Optional: Padding around the grid */
+}
+
 .item {
     background: var(--color-background-mute);
     border: 2px solid var(--color-border);
-    margin: 1px;
+    padding: 10px;
     display: flex;
+    flex-direction: column; /* Stack icon and text vertically */
     align-items: center;
-    transition: all 0.3s ease;
-    /* Smooth transition for all changes */
+    justify-content: center;
+    text-align: center;
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+    cursor: pointer;
+    box-sizing: border-box;
+    height: 100%;
 }
 
 .item:hover {
     background-color: var(--color-background-highlight);
-    /* Lighter background on hover */
     border-color: var(--color-primary);
-    /* Highlighted border color */
-    transform: scale(.99);
-    /* Slight scale */
-    cursor: pointer;
+    transform: scale(1.05);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    /* Subtle shadow */
+}
+
+.item h1 {
+    margin-top: 10px;
+    font-size: 1rem;
+    color: var(--color-text-primary);
+    text-align: center;
+    word-wrap: break-word;
+    flex-shrink: 0;
 }
 
 .item:hover h1 {
-    color: var(--color-text-highlight);
-    /* Text color change on hover */
+    color: var(--color-text-highlight); /* Change text color on hover */
+}
+
+.item .icon {
+    font-size: 2rem; /* Adjust icon size */
+    color: var(--color-icon-primary);
+    transition: color 0.3s ease;
+}
+
+.item:hover .icon {
+    color: var(--color-icon-highlight); /* Change icon color on hover */
 }
 </style>
