@@ -188,7 +188,7 @@ const results: Ref<string[]> = ref([]);
 }
 
 label {
-    font-size: 2rem;
+    font-size: 1rem;
 }
 
 input {
@@ -198,8 +198,38 @@ input {
 
 #filters {
     display: grid;
-    grid-template-columns: repeat(auto-fill, 100%);
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Dynamically adjusts columns */
+    gap: 10px; /* Space between grid items */
 }
+
+#filters div {
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Space between the checkbox and the label */
+    overflow: hidden; /* Prevents content overflow */
+}
+
+#filters label {
+    white-space: normal; /* Allows text to wrap to the next line */
+    overflow: visible; /* Ensures full visibility of text */
+    word-break: break-word; /* Breaks words if they are too long */
+}
+
+#filters button {
+    padding: 5px 10px;
+    text-align: center;
+    cursor: pointer;
+    background-color: #007bff; /* Button background color */
+    color: white;
+    border: none;
+    border-radius: 4px; /* Rounded corners */
+    transition: background-color 0.3s ease; /* Hover effect */
+}
+
+#filters button:hover {
+    background-color: #0056b3; /* Darker hover effect */
+}
+
 
 #discovery {
     padding-left: 15px;
@@ -208,7 +238,7 @@ input {
 button {
     margin-right: 10px;
     padding: 10px;
-    font-size: 1.5rem;
+    font-size: 1rem;
     cursor: pointer;
 }
 </style>
